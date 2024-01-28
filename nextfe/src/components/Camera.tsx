@@ -117,7 +117,7 @@ const CameraOpener = () => {
 
   return (
     <Wrapper>
-      <Camera ref={camera} faceMode="environment" aspectRatio="cover" numberOfCamerasCallback={setNumberOfCameras} />
+      <Camera ref={camera} facingMode="environment" aspectRatio="cover" numberOfCamerasCallback={setNumberOfCameras} />
       <Control>
         <ImagePreview image={image} />
         <TakePhotoButton
