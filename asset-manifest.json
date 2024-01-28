@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/whatsupwine/static/css/main.4152c3d3.css",
-    "main.js": "/whatsupwine/static/js/main.8a1014a1.js",
+    "main.js": "/whatsupwine/static/js/main.a6d09c57.js",
     "static/js/787.e048781c.chunk.js": "/whatsupwine/static/js/787.e048781c.chunk.js",
     "index.html": "/whatsupwine/index.html",
     "main.4152c3d3.css.map": "/whatsupwine/static/css/main.4152c3d3.css.map",
-    "main.8a1014a1.js.map": "/whatsupwine/static/js/main.8a1014a1.js.map",
+    "main.a6d09c57.js.map": "/whatsupwine/static/js/main.a6d09c57.js.map",
     "787.e048781c.chunk.js.map": "/whatsupwine/static/js/787.e048781c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4152c3d3.css",
-    "static/js/main.8a1014a1.js"
+    "static/js/main.a6d09c57.js"
   ]
 }
