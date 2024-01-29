@@ -1,12 +1,13 @@
 import React, { useRef, useState } from 'react';
 import { Camera, CameraType } from 'react-camera-pro';
 import styled from 'styled-components';
+import Tesseract  from 'tesseract.js';
 
 
 const Wrapper = styled.div`
   position: fixed;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   z-index: 1;
 `;
 
@@ -114,18 +115,31 @@ const CameraOpener = () => {
   const [numberOfCameras, setNumberOfCameras] = useState(0);
   const [image, setImage] = useState<string | null>(null);
   const camera = useRef<CameraType>(null);
+  const [errorMessages] = useState<object>({});
+  const [text, setText] = useState<string | null>(null);
+
+  function createWorker(arg0: string) {
+    throw new Error('Function not implemented.');
+  }
 
   return (
     <Wrapper>
-      <Camera ref={camera} facingMode="environment" aspectRatio="cover" numberOfCamerasCallback={setNumberOfCameras} />
+      <Camera ref={camera} errorMessages={errorMessages} facingMode="environment" aspectRatio="cover" numberOfCamerasCallback={setNumberOfCameras} />
       <Control>
         <ImagePreview image={image} />
+        {text !== '' && <div style={{color: "white"}}>{text}</div>}
         <TakePhotoButton
           onClick={() => {
             if (camera.current) {
               const photo = camera.current.takePhoto();
               console.log(photo);
               setImage(photo);
+              (async () => {
+                const worker = await Tesseract.createWorker('eng');
+                const ret = await worker.recognize(photo);
+                setText(ret.data.text);
+                await worker.terminate();
+              })();
             }
           }}
         />
