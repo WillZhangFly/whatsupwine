@@ -1,4 +1,3 @@
-import React from 'react';
 import CameraOpener from './components/Camera';
 
 const App = () => {

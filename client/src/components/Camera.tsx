@@ -95,7 +95,7 @@ const ImagePreview = styled.div<{ image: string | null }>`
 `;
 
 const CameraOpener = () => {
-  const [numberOfCameras, setNumberOfCameras] = useState(0);
+  const [, setNumberOfCameras] = useState(0);
   const [image, setImage] = useState<string | null>(null);
   const camera = useRef<CameraType>(null);
   const [errorMessages] = useState<object>({});
@@ -111,7 +111,6 @@ const CameraOpener = () => {
           onClick={() => {
             if (camera.current) {
               const photo = camera.current.takePhoto();
-              console.log(photo);
               setImage(photo);
               (async () => {
                 const worker = await Tesseract.createWorker('eng');
@@ -123,7 +122,7 @@ const CameraOpener = () => {
                   headers: {
                     'Content-Type': 'application/json',
                   },
-                  body: JSON.stringify({message: "cauliflower, broccoli, and carrots"}),
+                  body: JSON.stringify({message: ret.data.text.replace(/[^a-z0-9 ]/g, '')}),
                 });
 
                 const data = await response.json();
