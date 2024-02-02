@@ -123,7 +123,7 @@ const CameraOpener = () => {
                   headers: {
                     'Content-Type': 'application/json',
                   },
-                  body: JSON.stringify({text: "hello"}),
+                  body: JSON.stringify({message: "cauliflower, broccoli, and carrots"}),
                 });
 
                 const data = await response.json();
