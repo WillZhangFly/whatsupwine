@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Camera, CameraType } from 'react-camera-pro';
 import styled from 'styled-components';
 import Tesseract  from 'tesseract.js';
@@ -80,23 +80,6 @@ const TakePhotoButton = styled(Button)`
   }
 `;
 
-const ChangeFacingCameraButton = styled(Button)`
-  background: url(https://img.icons8.com/ios/50/000000/switch-camera.png);
-  background-position: center;
-  background-size: 40px;
-  background-repeat: no-repeat;
-  width: 40px;
-  height: 40px;
-  padding: 40px;
-  &:disabled {
-    opacity: 1;
-    cursor: default;
-  }
-  @media (max-width: 400px) {
-    padding: 40px 5px;
-  }
-`;
-
 const ImagePreview = styled.div<{ image: string | null }>`
   width: 120px;
   height: 120px;
@@ -118,10 +101,6 @@ const CameraOpener = () => {
   const [errorMessages] = useState<object>({});
   const [text, setText] = useState<string | null>(null);
 
-  function createWorker(arg0: string) {
-    throw new Error('Function not implemented.');
-  }
-
   return (
     <Wrapper>
       <Camera ref={camera} errorMessages={errorMessages} facingMode="environment" aspectRatio="cover" numberOfCamerasCallback={setNumberOfCameras} />
@@ -139,6 +118,7 @@ const CameraOpener = () => {
                 const ret = await worker.recognize(photo);
                 setText(ret.data.text);
                 await worker.terminate();
+  
               })();
             }
           }}
