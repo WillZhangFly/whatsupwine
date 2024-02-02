@@ -118,9 +118,20 @@ const CameraOpener = () => {
                 const ret = await worker.recognize(photo);
                 setText(ret.data.text);
                 await worker.terminate();
+                const response = await fetch('/wines', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({text: "hello"}),
+                });
+
+                const data = await response.json();
+                console.log("fetch data from server", data);
   
               })();
             }
+
           }}
         />
       </Control>
